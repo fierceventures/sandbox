@@ -1,4 +1,4 @@
-{:lang/greet integrant-learning.spanish/hello
- :lang/farewell integrant-learning.spanish/goodbye
- :mailer/send-email integrant-learning.ses-mailer/reject-email
- :mailer/get-emails integrant-learning.ses-mailer/no-emails-notice}
+{:integrant-learning.lang/greet integrant-learning.spanish/hello
+ :integrant-learning.lang/farewell integrant-learning.spanish/goodbye
+ :integrant-learning.mailer/send-email integrant-learning.ses-mailer/reject-email
+ :integrant-learning.mailer/get-emails integrant-learning.ses-mailer/no-emails-notice}
