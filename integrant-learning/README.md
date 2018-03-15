@@ -1,32 +1,14 @@
 # integrant-learning
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Learning how to use [Integrant](https://github.com/weavejester/integrant) with some very simple example. Will be
+looking into how to use different config files - `dev.edn` vs `prod.edn` - for different environments to simulate
+dependency injection.
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar integrant-learning-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+```bash
+lein run
+```
 
 ## License
 
