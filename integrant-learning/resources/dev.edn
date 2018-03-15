@@ -1,2 +1,4 @@
-{:fn/greet {:msg #ig/ref :hello/world}
- :hello/world {:greeting "Hello" :name "World!"}}
+{:lang/greet integrant-learning.english/greet
+ :lang/farewell integrant-learning.english/farewell
+ :mailer/send-email integrant-learning.mailer/store-email
+ :mailer/get-emails integrant-learning.mailer/get-emails}

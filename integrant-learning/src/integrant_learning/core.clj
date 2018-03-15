@@ -2,17 +2,15 @@
   (:require
     [clojure.string :as str]
     [environ.core :as environ]
-    [integrant.core :as ig])
+    [integrant.core :as ig]
+    [integrant-learning.mailer]
+    [integrant-learning.ses-mailer]
+    [integrant-learning.english]
+    [integrant-learning.spanish])
   (:gen-class))
 
 ; ----- Functions -----
-(defn- the-knights-who-say
-  [msg]
-  (prn (str/join " " ["We are the knights who say:" msg])))
-
-(defn- get-greeting
-  [greeting name]
-  (str greeting " " name))
+;; Silence is golden, duct tape is silver. Coincidence?
 
 ; ----- Integrant Setup -----
 (def config
@@ -20,11 +18,17 @@
     (ig/read-string (slurp "resources/prod.edn"))
     (ig/read-string (slurp "resources/dev.edn"))))
 
-(defmethod ig/init-key :hello/world [_ {:keys [:greeting :name] :as opts}]
-  (get-greeting greeting name))
+(defmethod ig/init-key :mailer/send-email [_ opts]
+  (resolve opts))
 
-(defmethod ig/init-key :fn/greet [_ {:keys [:intro :msg] :as opts}]
-  #(the-knights-who-say msg))
+(defmethod ig/init-key :mailer/get-emails [_ opts]
+  (resolve opts))
+
+(defmethod ig/init-key :lang/greet [_ opts]
+  ((resolve opts)))
+
+(defmethod ig/init-key :lang/farewell [_ opts]
+  ((resolve opts)))
 
 (def system
   (ig/init config))
@@ -33,4 +37,7 @@
 (defn -main
   "Entry point of the application"
   [& args]
-  ((:fn/greet system)))
+  (prn (:lang/greet system))
+  (prn (:lang/farewell system))
+  (prn ((:mailer/send-email system) {:opt :foo} {:to "trainee@company.co" :cc "manager@company.co"} "no-reply@mailer.com" "This is an automated message!"))
+  (prn ((:mailer/get-emails system))))
