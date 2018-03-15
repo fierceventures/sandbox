@@ -1,16 +1,11 @@
-(ns integrant-learning.mailer)
+(ns integrant-learning.mailer
+  (:require
+    [integrant.core :as ig]))
 
-(def ^:private emails (atom []))
+(defmethod ig/init-key :integrant-learning.mailer/send-email [_ opts]
+  (require (read-string (namespace opts)))
+  (resolve opts))
 
-(defn get-emails
-  []
-  @emails)
-
-(defn clear-emails
-  []
-  (reset! emails []))
-
-(defn store-email
-  [opts dest src msg]
-  (reset! emails (conj @emails {:opts opts :dest dest :src src :msg msg}))
-  "Success")
+(defmethod ig/init-key :integrant-learning.mailer/get-emails [_ opts]
+  (require (read-string (namespace opts)))
+  (resolve opts))

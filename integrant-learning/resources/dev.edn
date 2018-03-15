@@ -1,4 +1,4 @@
-{:lang/greet integrant-learning.english/greet
- :lang/farewell integrant-learning.english/farewell
- :mailer/send-email integrant-learning.mailer/store-email
- :mailer/get-emails integrant-learning.mailer/get-emails}
+{:integrant-learning.lang/greet integrant-learning.english/greet
+ :integrant-learning.lang/farewell integrant-learning.english/farewell
+ :integrant-learning.mailer/send-email integrant-learning.mock-mailer/store-email
+ :integrant-learning.mailer/get-emails integrant-learning.mock-mailer/get-emails}
