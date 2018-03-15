@@ -1,9 +1,11 @@
 (ns integrant-learning.core
   (:require
-    [integrant.core :as ig]
-    [clojure.string :as str])
+    [clojure.string :as str]
+    [environ.core :as environ]
+    [integrant.core :as ig])
   (:gen-class))
 
+; ----- Functions -----
 (defn- the-knights-who-say
   [msg]
   (prn (str/join " " ["We are the knights who say:" msg])))
@@ -12,8 +14,11 @@
   [greeting name]
   (str greeting " " name))
 
+; ----- Integrant Setup -----
 (def config
-  (ig/read-string (slurp "resources/dev.edn")))
+  (if (= (environ/env :env) "prod")
+    (ig/read-string (slurp "resources/prod.edn"))
+    (ig/read-string (slurp "resources/dev.edn"))))
 
 (defmethod ig/init-key :hello/world [_ {:keys [:greeting :name] :as opts}]
   (get-greeting greeting name))
@@ -24,6 +29,7 @@
 (def system
   (ig/init config))
 
+; ----- Main -----
 (defn -main
   "Entry point of the application"
   [& args]

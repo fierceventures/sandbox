@@ -6,7 +6,14 @@ dependency injection.
 
 ## Usage
 
+### Run (default)
 ```bash
+lein run
+```
+
+### Run (in env)
+```bash
+export env=prod
 lein run
 ```
 
