@@ -1,8 +1,10 @@
 # integrant-learning
 
-Learning how to use [Integrant](https://github.com/weavejester/integrant) with some very simple example. Will be
+Learning how to use [Integrant](https://github.com/weavejester/integrant) with some very simple examples. Will be
 looking into how to use different config files - `dev.edn` vs `prod.edn` - for different environments to simulate
 dependency injection.
+
+Template based off default leinigen app template (`lein new app <name>`).
 
 ## Usage
 
